@@ -50,32 +50,32 @@ int main() {
 /*
 	ПОПРОБОВАТЬ ОТСЕЯТЬ ПРЯМЫМ ХОДОМ И ЗАТЕМ ОБРАТНЫМ ХОДОМ ПО МАССИВУ
 
+	get_words возвращает указатель на массив с словами которые начинаются и оканчиваются буквами из множества которое задаём мы с помощью параметров
 
 */
 char* get_words(char* str, char* unique_letters) {
-	char* tmp = (char*)malloc(sizeof(char) * MAX_LENGHT_STRING);
+	char* tmp = (char*)malloc(sizeof(char) * MAX_LENGHT_STRING); //выделение памяти для нашего массива со словами
 	//hello edik odin odin 
 	int i = 0, j = 0;
-	int index = 0;
-	tmp[j++] = ' '; // установка отбойника для обратного хода
-	while (str[i] != 0)
+
+	tmp[j++] = ' '; // установка отбойника для обратного хода, чтобы не выйти за пределы выделенной памяти
+	while (str[i] != 0) //перебор основной строки со всяким мусором. Пример: w4eiwe .4 ow4 wv34o 4. ofw q3 
 	{
-		if (!isalpha(str[i-1]) && !isUnique_let(unique_letters, str[i]))
+		if (!isalpha(str[i - 1]) && !isUnique_let(unique_letters, str[i])) //проверка, что это начало слова и начинается с помощью нашего множества
 		{
-			while (str[i] != 0 && isalpha(str[i]))
+			while (str[i] != 0 && isalpha(str[i])) //заполнение массива словом, которое удовлетворяет условиям (начинается с нашего множества)
 			{
 				tmp[j] = str[i];
 				i++;
 				j++;
 
 			}
-			tmp[j++] = ' ';
+			tmp[j++] = ' '; // установка пробела в массиве слов для разделённого массива в качестве результата ф-ции
 
 			//обратный очищающий ход
-			if (isUnique_let(unique_letters, tmp[j-2]))
+			if (isUnique_let(unique_letters, tmp[j - 2])) // проверка на то, если конец слова не является буквой из нашего множества то мы удаляем это слово 
 			{
-				j--;
-				j--;
+				j = j - 2;
 				while (tmp[j] != ' ')
 				{
 					tmp[j--] = ' ';
@@ -84,12 +84,7 @@ char* get_words(char* str, char* unique_letters) {
 
 			}
 
-
-
 		}
-
-
-
 
 		i++;
 	}
