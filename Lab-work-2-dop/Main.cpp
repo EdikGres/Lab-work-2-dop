@@ -53,12 +53,11 @@ int main() {
 
 */
 char* get_words(char* str, char* unique_letters) {
-	char word[MAX_LENGHT_STRING];
 	char* tmp = (char*)malloc(sizeof(char) * MAX_LENGHT_STRING);
 	//hello edik odin odin 
-	int i = 0, j = 0, t = 0;
+	int i = 0, j = 0;
 	int index = 0;
-	tmp[j++] = ' ';
+	tmp[j++] = ' '; // установка отбойника для обратного хода
 	while (str[i] != 0)
 	{
 		if (!isalpha(str[i-1]) && !isUnique_let(unique_letters, str[i]))
@@ -79,10 +78,9 @@ char* get_words(char* str, char* unique_letters) {
 				j--;
 				while (tmp[j] != ' ')
 				{
-					tmp[j] = ' ';
-					j--;
+					tmp[j--] = ' ';
 				}
-				
+				j++;
 
 			}
 
