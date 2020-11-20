@@ -37,9 +37,10 @@ int main() {
 
 	char* result = get_words(text, uniq_letters);
 	i = 0;
+	printf("Result: \n");
 	while (result[i] != 0)
 	{
-		printf("%c", result[i++]);
+		printf("%c", result[++i]);
 
 	}
 
